@@ -15,3 +15,12 @@ content = driver.page_source
 soup = BeautifulSoup(content, "html.parser")
 with open("%s.txt" %site[len(site)-20], "w", encoding='utf-8') as text_file:
     text_file.write(soup.prettify())
+
+calendarLink =[item["data-embed-open-url"] for item in soup.find_all() if "data-embed-open-url" in item.attrs][0]
+print(calendarLink)
+
+driver.get(calendarLink)
+calendarContent=driver.page_source
+calendar=BeautifulSoup(calendarContent,"html.parser")
+with open("%s.txt" %site[len(site)-20], "w", encoding='utf-8') as text_file:
+    text_file.write(calendar.prettify())
