@@ -1,0 +1,9 @@
+{
+    "name": "com.edb.scraper",
+    "description": "Open scraper",
+    "path": "scraper.bat",
+    "type": "stdio",
+    "allowed_origins": [
+        "chrome-extension://pclfoboockmdlnialmnoeikmokgeomap/"
+    ]
+}

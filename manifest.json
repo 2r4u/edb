@@ -1,0 +1,15 @@
+{
+    "name": "Enhanced Dashboard",
+    "version": "1.0",
+    "description": "Improved Classroom info",
+    "manifest_version": 3,
+    "permissions": [
+        "nativeMessaging"
+    ],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "128": "logo.png"
+    }
+}
