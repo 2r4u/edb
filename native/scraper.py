@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from bs4 import BeautifulSoup
-import pandas as pd
+# import pandas as pd
 
 service = Service(executable_path="chromedriver.exe")
 
