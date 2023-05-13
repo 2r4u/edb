@@ -3,8 +3,10 @@
     "version": "1.0",
     "description": "Improved Classroom info",
     "manifest_version": 3,
+    "options_page":"options.html",
     "permissions": [
-        "nativeMessaging"
+        "nativeMessaging",
+        "storage"
     ],
     "action": {
         "default_popup": "popup.html"
