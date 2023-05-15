@@ -1,32 +1,18 @@
 // Saves options to chrome.storage
-const saveOptions = () => {
-    const color = document.getElementById('color').value;
-    const likesColor = document.getElementById('like').checked;
+function saveOptions(){
+  const link = document.getElementById('link-input').value;
+  chrome.storage.local.set({ calendarLink: link }).then(() => {
+    console.log("Value is set to " + link);
+  });
+};
+
+// Restores select box and checkbox state using the preferences
+// stored in chrome.storage.
+function restoreOptions(){
+  chrome.storage.local.get(["calendarLink"]).then((result) => {
+    console.log("Value currently is " + result.key);
+  });
+};
   
-    chrome.storage.sync.set(
-      { favoriteColor: color, likesColor: likesColor },
-      () => {
-        // Update status to let user know options were saved.
-        const status = document.getElementById('status');
-        status.textContent = 'Options saved.';
-        setTimeout(() => {
-          status.textContent = '';
-        }, 750);
-      }
-    );
-  };
-  
-  // Restores select box and checkbox state using the preferences
-  // stored in chrome.storage.
-  const restoreOptions = () => {
-    chrome.storage.sync.get(
-      { favoriteColor: 'red', likesColor: true },
-      (items) => {
-        document.getElementById('color').value = items.favoriteColor;
-        document.getElementById('like').checked = items.likesColor;
-      }
-    );
-  };
-  
-  document.addEventListener('DOMContentLoaded', restoreOptions);
-  document.getElementById('save').addEventListener('click', saveOptions);
+document.addEventListener('DOMContentLoaded', restoreOptions);
+document.getElementById('save').addEventListener('click', saveOptions);
