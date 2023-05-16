@@ -20,13 +20,5 @@ driver = webdriver.Chrome(service=service)
 # print(calendarLink)
 calendarLink="https://drive.google.com/open?authuser=0&id=1AwFI1BD0pUJygVVUk2-rtC93HKBxQWuKA6tdknMq2p8"
 driver.get(calendarLink)
-calendarContent=driver.page_source
-calendar=BeautifulSoup(calendarContent,"html.parser")
 
-scripts = calendar.find_all("script",string=True)
-
-with open("%s.txt" %calendarLink[len(calendarLink)-20], "a", encoding='utf-8') as text_file:
-    for s in scripts:
-        text_file.write(calendar.prettify())
-
-#contents of doc can be found in <script nonce="" type="text/javascript">
+#use this link:https://docs.google.com/document/u/1/export?format=txt + the id of the doc you want to download
