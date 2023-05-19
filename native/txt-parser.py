@@ -1,5 +1,5 @@
 import re
-dates = []
+
 with open("calendars\PC2223 Student Calendar.txt") as calendar:
     for line in calendar:
         if not len(line) - len(line.lstrip())>0:
