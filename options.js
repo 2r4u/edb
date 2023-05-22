@@ -1,18 +1,17 @@
-// Saves options to chrome.storage
-function saveOptions(){
-  const link = document.getElementById('link-input').value;
-  chrome.storage.local.set({ calendarLink: link }).then(() => {
-    console.log("Value is set to " + link);
+document.body.onload = function() {
+  chrome.storage.sync.get("data", function(items) {
+    if (!chrome.runtime.error) {
+      console.log(items);
+      document.getElementById("link-input").innerText = items.data;
+    }
   });
-};
+}
 
-// Restores select box and checkbox state using the preferences
-// stored in chrome.storage.
-function restoreOptions(){
-  chrome.storage.local.get(["calendarLink"]).then((result) => {
-    console.log("Value currently is " + result.key);
+document.getElementById("save").onclick = function() {
+  var d = document.getElementById("link-input").value;
+  chrome.storage.sync.set({ "data" : d }, function() {
+    if (chrome.runtime.error) {
+      console.log("Runtime error.");
+    }
   });
-};
-  
-document.addEventListener('DOMContentLoaded', restoreOptions);
-document.getElementById('save').addEventListener('click', saveOptions);
+}
