@@ -11,12 +11,9 @@
     "action": {
         "default_popup": "popup.html"
     },
-    "content_scripts": [
-        {
-          "matches": ["https://classroom.google.com/u/*/h"],
-          "js": ["content-script.js"]
-        }
-    ],
+    "background": {
+        "service-worker": ["background.js"]
+    },
     "icons": {
         "128": "logo.png"
     }
