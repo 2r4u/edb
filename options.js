@@ -1,4 +1,10 @@
-
+var port = chrome.runtime.connectNative('com.edb.scraper');
+port.onMessage.addListener(function (msg) {
+  console.log('Received' + msg);
+});
+port.onDisconnect.addListener(function () {
+  console.log('Disconnected');
+});
 
 function saveData(){
   let data=document.getElementById("link-input").value;
