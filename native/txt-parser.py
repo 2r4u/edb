@@ -1,9 +1,20 @@
-import re, json, os
+import re, json, os, struct, sys
 
 #set regex patterns and file directory
 dp1="\d/\d"
 dp2="\d/\d\d"
 directory="txt-calendars/"
+
+def send_message(MSG_DICT):
+    # Converts dictionary into string containing JSON format.
+    msg_json = json.dumps(MSG_DICT, separators=(",", ":"))
+    # Encodes string with UTF-8.
+    msg_json_utf8 = msg_json.encode("utf-8")
+    # Writes the message size. (Writing to buffer because writing bytes object.)
+    sys.stdout.buffer.write(struct.pack("i", len(msg_json_utf8)))
+    # Writes the message itself. (Writing to buffer because writing bytes object.)
+    sys.stdout.buffer.write(msg_json_utf8)
+
 
 #loop through txt files
 for filename in os.listdir(directory):
@@ -33,3 +44,4 @@ for filename in os.listdir(directory):
     #dumps the formatted calendar into a json file wiht the same name
     with open("json-calendars/%s.json" % os.path.splitext(filename)[0], "w") as jsonfile:
         json.dump( calendarDict, jsonfile)
+    send_message(calendarDict)
