@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My Test Extension Options</title>
+  <link rel="stylesheet" href="options.css">
   </head>
-  <body>
-    <input type="text" id="link-input">
-    <div id="status"></div>
-    <button id="save">Save</button>
+  <title>
 
-    <script src="options.js"></script>
+  </title>
+  <body>
+    <div class="container"> 
+       
+      <form id="contact" action="" method="post">
+<h2>Enter the link of the calendar on this page</h2>        
+        <fieldset>
+          <textarea placeholder="Enter link" tabindex="5" required></textarea>
+        </fieldset>
+        <fieldset>
+          <button name="submit" type="submit" id="save" data-submit="...Sending">Submit</button>
+        </fieldset>
+      </form>
+    </div>
+    <canvas id="canvas"></canvas>
+
+    <script src="optionss.js"></script>
   </body>
 </html>
