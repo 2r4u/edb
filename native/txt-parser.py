@@ -9,11 +9,10 @@ def send_message(MSG_DICT):
     # Converts dictionary into string containing JSON format.
     msg_json = json.dumps(MSG_DICT, separators=(",", ":"))
     # Encodes string with UTF-8.
-    msg_json_utf8 = msg_json.encode("utf-8")
-    # Writes the message size. (Writing to buffer because writing bytes object.)
-    sys.stdout.buffer.write(struct.pack("i", len(msg_json_utf8)))
-    # Writes the message itself. (Writing to buffer because writing bytes object.)
-    sys.stdout.buffer.write(msg_json_utf8)
+    text =msg_json
+    sys.stdout.write(struct.pack("@I", len(text)))
+    sys.stdout.write(text)
+    sys.stdout.flush()
 
 
 #loop through txt files
@@ -44,4 +43,5 @@ for filename in os.listdir(directory):
     #dumps the formatted calendar into a json file wiht the same name
     with open("json-calendars/%s.json" % os.path.splitext(filename)[0], "w") as jsonfile:
         json.dump( calendarDict, jsonfile)
+    
     send_message(calendarDict)

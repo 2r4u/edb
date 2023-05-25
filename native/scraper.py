@@ -14,7 +14,7 @@ options.add_experimental_option("prefs", {
 driver = webdriver.Chrome(service=service, options=options)
 
 calendarLink="https://docs.google.com/document/export?format=txt&id=1JivTyrwnIbi8V23sukPgTewOuND-HTYKLVHc8S3BVSc"
-driver.get(calendarLink)
+# driver.get(calendarLink)
 time.sleep(3)
 
 #use this link:https://docs.google.com/document/u/1/export?format=txt + the id of the doc you want to download
