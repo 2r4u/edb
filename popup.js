@@ -12,6 +12,9 @@ start.addEventListener('click', () => {
     console.log("sent message")
     port.onMessage.addListener(function (msg) {
         console.log('Received ' + msg);
+        if(msg.text='ready'){
+            port.postMessage({text: 'Hello, my_application'});
+        }
     });
     port.onDisconnect.addListener(function () {
         if (chrome.runtime.lastError) {
