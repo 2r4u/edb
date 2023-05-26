@@ -8,7 +8,7 @@ var port = null;
 // }
 
 start.addEventListener('click', () => {
-    port = chrome.runtime.connectNative('com.edb.scraper');
+    port = chrome.runtime.connectNative('com.edb.nativehost');
     console.log("sent message")
     port.onMessage.addListener(function (msg) {
         console.log('Received ' + msg);
