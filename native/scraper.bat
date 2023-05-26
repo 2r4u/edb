@@ -2,4 +2,4 @@
 ::pip install selenium
 ::pip install beautifulsoup4
 call scraper.py
-start txt-parser.py
+python -u txt-parser.py

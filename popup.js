@@ -11,7 +11,7 @@ start.addEventListener('click', () => {
     port = chrome.runtime.connectNative('com.edb.scraper');
     console.log("sent message")
     port.onMessage.addListener(function (msg) {
-        console.log('Received' + msg);
+        console.log('Received ' + msg);
     });
     port.onDisconnect.addListener(function () {
         if (chrome.runtime.lastError) {
