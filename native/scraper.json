@@ -1,7 +1,7 @@
 {
-    "name": "com.edb.nativehost",
+    "name": "com.edb.scraper",
     "description": "Run native host",
-    "path": "native-host.py",
+    "path": "scraper.bat",
     "type": "stdio",
     "allowed_origins": [
         "chrome-extension://pclfoboockmdlnialmnoeikmokgeomap/",

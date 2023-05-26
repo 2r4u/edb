@@ -1,7 +1,6 @@
 import re, json, os, struct, sys, time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from bs4 import BeautifulSoup
 
 #set regex patterns and file directory
 dp1="\d/\d"
@@ -57,7 +56,7 @@ def scrape(link):
             prevLetter=letter
     calendarLink="https://docs.google.com/document/export?format=txt&id="+id
     # driver.get(calendarLink)
-    time.sleep(3)
+    time.sleep(1)
     parse()
     #use this link:https://docs.google.com/document/u/1/export?format=txt + the id of the doc you want to download
 
@@ -98,4 +97,4 @@ while True:
     msg =get_message()
     # with open("output.json", "w") as file:
     #     file.write(msg)
-    send_message(encode_message(msg))
+    parse()

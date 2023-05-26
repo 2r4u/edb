@@ -6,7 +6,11 @@
     "options_page":"options.html",
     "permissions": [
         "nativeMessaging",
-        "storage"
+        "storage",
+        "scripting"
+    ],
+    "host_permissions":[
+        "https://classroom.google.com/*"
     ],
     "action": {
         "default_popup": "popup.html"
