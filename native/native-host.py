@@ -97,4 +97,7 @@ while True:
     msg =get_message()
     # with open("output.json", "w") as file:
     #     file.write(msg)
-    parse()
+    if msg["operation"]=="send":
+        parse()
+    elif msg["operation"]=="scrape":
+        scrape(msg["link"])

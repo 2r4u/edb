@@ -24,7 +24,20 @@ document.getElementById("save").addEventListener("click", saveData);
 document.getElementById("run").addEventListener('click', () => {
   port = chrome.runtime.connectNative('com.edb.scraper');
   console.log("sent message")
-  port.postMessage({link: document.getElementById("link-input").value});
+  port.postMessage({link: "", operation:"send"});
+  port.onMessage.addListener(function (msg) {
+    console.log('Received ' + msg);
+  });
+  port.onDisconnect.addListener(function () {
+    if (chrome.runtime.lastError) {
+      console.log(chrome.runtime.lastError.message);
+    }
+  });
+})
+document.getElementById("scrape").addEventListener('click', () => {
+  port = chrome.runtime.connectNative('com.edb.scraper');
+  console.log("sent message")
+  port.postMessage({link: document.getElementById("link-input").value, operation:"scrape"});
   port.onMessage.addListener(function (msg) {
     console.log('Received ' + msg);
   });
@@ -36,5 +49,5 @@ document.getElementById("run").addEventListener('click', () => {
 })
 
 retrieveData("link").then(function(item) {
-  console.log(item);
+  document.getElementById("link-input").value=item;
 });
