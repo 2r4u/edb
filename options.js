@@ -1,8 +1,11 @@
 var port=null;
-
+let cdict={};
 function saveData(){
-  let data=document.getElementById("link-input").value;
-  chrome.storage.sync.set({link: data});
+  let links=Array.from(document.getElementsByClassName("link-input"));
+  for(let i=0; i<links.length; i++){
+    cdict[classes[i]]=links[i].innerText;
+  }
+  chrome.storage.sync.set({classLinks: JSON.stringify(cdict)});
 }
 
 
@@ -17,6 +20,22 @@ function retrieveData(key){
         resolve(items[key]);
       }
     });
+  });
+}
+
+function populate(){
+  classes.forEach(cl => {
+    const crow=document.createElement("tr");
+    crow.id=cl;
+    document.getElementById("inputs").appendChild(crow);
+    const cname=document.createElement("td");
+    cname.innerText=cl;
+    document.getElementById(cl).appendChild(cname);
+    const cinput=document.createElement("td");
+    cinput.contentEditable="true";
+    cinput.classList.add("link-input");
+    cinput.innerText="Enter link to calendar for "+cl;
+    document.getElementById(cl).appendChild(cinput);
   });
 }
 
@@ -47,7 +66,12 @@ document.getElementById("scrape").addEventListener('click', () => {
     }
   });
 })
-
-retrieveData("link").then(function(item) {
-  document.getElementById("link-input").value=item;
+let classes;
+retrieveData("classes").then(function(item) {
+  classes=JSON.parse(item);
+  console.log(classes);
+  populate();
+});
+retrieveData("classLinks").then(function(item) {
+  console.log(JSON.parse(item));
 });
