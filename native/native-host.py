@@ -7,6 +7,8 @@ dp1="\d/\d"
 dp2="\d/\d\d"
 directory="txt-calendars/"
 
+jsonCalendars=[]
+
 def send_message(encoded_message):
     # Converts dictionary into string containing JSON format.
     # Write message size.
@@ -34,6 +36,14 @@ def get_message():
     message = sys.stdin.buffer.read(message_length).decode("utf-8")
     return json.loads(message)
         
+def retrieve():
+    global jsonCalendars
+    for filename in os.listdir("json-calendars/"):
+        if filename[len(filename)-5:]==".json":
+            with open(os.path.join("json-calendars/", filename), 'r') as f:
+                jsonCalendars.append(json.load(f))
+    send_message(encode_message(jsonCalendars))
+
 
 def scrape(link):
     
@@ -90,14 +100,11 @@ def parse():
             #dumps the formatted calendar into a json file wiht the same name
             with open("json-calendars/%s.json" % os.path.splitext(filename)[0], "w") as jsonfile:
                 json.dump( calendarDict, jsonfile)
-            
-            send_message(encode_message(calendarDict))
+
 
 while True:
     msg =get_message()
-    # with open("output.json", "w") as file:
-    #     file.write(msg)
     if msg["operation"]=="send":
-        parse()
+        retrieve()
     elif msg["operation"]=="scrape":
         scrape(msg["link"])

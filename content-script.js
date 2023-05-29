@@ -14,21 +14,28 @@ function inject() {
     var jsInitChecktimer = setInterval(checkForJS_Finish, 111);
     function checkForJS_Finish() {
         if (document.querySelector(".lziZub")) {
-            let contents=[":("];
+            let cjdict={};
             clearInterval(jsInitChecktimer);
-            retrieveData("classes").then(function (item) {
-                console.log("loaded classes: " + JSON.parse(item))
-                contents = JSON.parse(item);
+            retrieveData("cjdict").then(function (item) {
+                console.log("loaded data: " + JSON.parse(item))
+                cjdict = JSON.parse(item);
+                const date=new Date();
                 let assingnmentAreas = Array.from(document.getElementsByClassName("lziZub"));
-                console.log(assingnmentAreas[0]);
                 for (let i = 0; i < assingnmentAreas.length; i++) {
                     if(assingnmentAreas[i].classList.contains("sdDCme")){
                         assingnmentAreas[i].classList.remove("sdDCme")
                         assingnmentAreas[i].innerHTML="";
                     }
-                    const span=document.createElement("span");
-                    span.textContent=contents[i];
-                    assingnmentAreas[i].appendChild(span);
+                    let calendar= cjdict[classes[i]];
+                    for(const key in calendar){
+                        let cdate=new Date(key);
+                        if(date.getMonth)
+                        //TODO: parse dates, show three closest assignments
+                        const span=document.createElement("span");
+                        span.textContent=contents[i];
+                        assingnmentAreas[i].appendChild(span);
+                    }
+                    
                 }
             });
             
@@ -38,7 +45,6 @@ function inject() {
 function scan() {
     //add code to find classes and store them in an array in sync storage
     var jsInitChecktimer = setInterval(checkForJS_Finish, 111);
-    let classes = [];
     function checkForJS_Finish() {
         if (document.querySelector(".gHz6xd")) {
             clearInterval(jsInitChecktimer);
@@ -55,6 +61,10 @@ function scan() {
     }
 
 }
+let classes =[];
+retrieveData("classes").then(function(item){
+    classes=JSON.parse(item);
+});
 window.addEventListener("load", scan, false);
 window.addEventListener("load", inject, false);
 
