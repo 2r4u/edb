@@ -1,8 +1,6 @@
 
-let scanButton=document.getElementById("scan");
-// function gotMessage(msg){
-//     console.log('Received' + msg.text);
-//     document.getElementById("output").innerText=msg.text;
-// }
-
+let options=document.getElementById("options");
+options.addEventListener('click', ()=>{
+    chrome.runtime.openOptionsPage();
+});
 
