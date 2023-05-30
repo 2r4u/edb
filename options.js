@@ -3,6 +3,8 @@ let cldict={};
 let cjdict={};
 let links=[];
 let cjsons=[];
+let classes=[];
+
 function saveData(){
   links=Array.from(document.getElementsByClassName("link-input"));
   chrome.storage.sync.set({links: JSON.stringify(links)})
@@ -65,6 +67,13 @@ function getJson(){
 
 document.getElementById("save").addEventListener("click", saveData);
 document.getElementById("get").addEventListener("click", getJson);
+document.getElementById("add").addEventListener('click', ()=>{
+  //TODO: add ability to add classes, way to associate correct json
+  let cname=prompt("please enter the name of the new class");
+  classes.push[cname];
+  chrome.storage.sync.set({classes: JSON.stringify(classes)});
+  populate()
+});
 document.getElementById("scrape").addEventListener('click', () => {
   port = chrome.runtime.connectNative('com.edb.scraper');
   console.log("scraping links")
@@ -76,8 +85,7 @@ document.getElementById("scrape").addEventListener('click', () => {
       console.log(chrome.runtime.lastError.message);
     }
   });
-})
-let classes;
+});
 retrieveData("links").then(function(item) {
   links=item;
 });

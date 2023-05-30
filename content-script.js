@@ -65,7 +65,9 @@ function scan() {
             console.log(classElements);
             classElements.forEach(element => {
                 console.log(element.innerText.split("\n")[0]);
-                classes.push(element.innerText.split("\n")[0]);
+                if(classes.indexOf(element.innerText.split("\n")[0])==-1){
+                    classes.push(element.innerText.split("\n")[0]);
+                }
             });
             console.log(JSON.stringify(classes));
             chrome.storage.sync.set({ classes: JSON.stringify(classes) });
