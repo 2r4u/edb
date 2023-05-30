@@ -70,9 +70,10 @@ document.getElementById("get").addEventListener("click", getJson);
 document.getElementById("add").addEventListener('click', ()=>{
   //TODO: add ability to add classes, way to associate correct json
   let cname=prompt("please enter the name of the new class");
-  classes.push[cname];
+  classes.push(cname);
+  console.log(classes);
   chrome.storage.sync.set({classes: JSON.stringify(classes)});
-  populate()
+  location.reload();
 });
 document.getElementById("scrape").addEventListener('click', () => {
   port = chrome.runtime.connectNative('com.edb.scraper');
@@ -87,7 +88,7 @@ document.getElementById("scrape").addEventListener('click', () => {
   });
 });
 retrieveData("links").then(function(item) {
-  links=item;
+  links=JSON.parse(item);
 });
 retrieveData("cjdict").then(function(item) {
   cjdict=JSON.parse(item);
