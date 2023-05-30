@@ -6,10 +6,24 @@
     "options_page":"options.html",
     "permissions": [
         "nativeMessaging",
-        "storage"
+        "storage",
+        "scripting"
+    ],
+    "content_scripts": [
+        {
+          "matches": ["https://classroom.google.com/*"],
+          "run_at": "document_end",
+          "js": ["content-script.js"]
+        }
+      ],
+    "host_permissions":[
+        "https://classroom.google.com/*"
     ],
     "action": {
         "default_popup": "test.html"
+    },
+    "background": {
+        "service-worker": "background.js"
     },
     "icons": {
         "128": "logo.png"

@@ -1,17 +1,8 @@
-let start = document.getElementById("start")
 
-var port = null;
-
-start.addEventListener('click', () => {
-    port = chrome.runtime.connectNative('com.edb.scraper');
-    onDisconnect();
-})
+let scanButton=document.getElementById("scan");
+// function gotMessage(msg){
+//     console.log('Received' + msg.text);
+//     document.getElementById("output").innerText=msg.text;
+// }
 
 
-function onDisconnect() {
-    port.onDisconnect.addListener(function () {
-        if (chrome.runtime.lastError) {
-            console.log(chrome.runtime.lastError);
-        }
-    });
-}

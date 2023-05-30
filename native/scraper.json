@@ -1,6 +1,6 @@
 {
     "name": "com.edb.scraper",
-    "description": "Open scraper",
+    "description": "Run native host",
     "path": "scraper.bat",
     "type": "stdio",
     "allowed_origins": [
