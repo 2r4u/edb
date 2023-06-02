@@ -20,7 +20,7 @@
         "https://classroom.google.com/*"
     ],
     "action": {
-        "default_popup": "test.html"
+        "default_popup": "popup.html"
     },
     "background": {
         "service-worker": "background.js"
