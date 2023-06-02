@@ -1,10 +1,11 @@
 {
-    "name": "com.edb.scraper",
+    "name": "`com.edb.scraper`",
     "description": "Run native host",
     "path": "scraper.bat",
     "type": "stdio",
     "allowed_origins": [
         "chrome-extension://pclfoboockmdlnialmnoeikmokgeomap/",
-        "chrome-extension://hffkpdiheoifjamngjellaojlbdmbejh/"
+        "chrome-extension://hffkpdiheoifjamngjellaojlbdmbejh/",
+        "chrome-extension://inclchllngjphgpmadjgnpehjmjcbpno/"
     ]
 }
