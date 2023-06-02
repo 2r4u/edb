@@ -1,5 +1,5 @@
 {
-    "name": "`com.edb.scraper`",
+    "name": "com.edb.scraper",
     "description": "Run native host",
     "path": "scraper.bat",
     "type": "stdio",
