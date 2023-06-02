@@ -52,7 +52,7 @@ def scrape(link):
     service = Service(executable_path="chromedriver.exe")
     options = webdriver.ChromeOptions()
     options.add_experimental_option("prefs", {
-    "download.default_directory": "C:\\Users\\2r4u6\\Documents\\apcs\\edb\\native\\txt-calendars",
+    "download.default_directory": os.getcwd()+"\\txt-calendars",
     "download.prompt_for_download":False
     })
 
@@ -65,9 +65,9 @@ def scrape(link):
         else:
             prevLetter=letter
     calendarLink="https://docs.google.com/document/export?format=txt&id="+id
-    # driver.get(calendarLink)
-    time.sleep(1)
-    parse()
+    driver.get(calendarLink)
+    time.sleep(5)
+    
     #use this link:https://docs.google.com/document/u/1/export?format=txt + the id of the doc you want to download
 
 def parse():
@@ -108,3 +108,4 @@ while True:
         retrieve()
     elif msg["operation"]=="scrape":
         scrape(msg["link"])
+        parse()
